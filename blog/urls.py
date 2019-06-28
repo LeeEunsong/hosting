@@ -1,0 +1,32 @@
+"""study URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/2.2/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+
+from django.contrib import admin
+from django.urls import path, include
+from . import views
+
+urlpatterns = [
+    path('', views.home, name="home"),
+    path('<int:blog_id>',views.detail, name="detail"),
+    path('create', views.create, name="create"), #함수도 부를수 있다. 굳이 html만 부르는건 아니다.
+    path('edit/<int:blog_id>', views.edit, name="edit"),
+    path('delete/<int:blog_id>', views.delete, name="delete"),
+
+    path('comment_add/<int:blog_id>', views.comment_add, name='comment_add'),
+    path('comment_edit/<int:comment_id>', views.comment_edit, name='comment_edit'),
+    path('comment_delete/<int:comment_id>', views.comment_delete, name='comment_delete'),
+    
+] 
